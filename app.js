@@ -4,11 +4,12 @@ var config = require('./config')
 var app = require('express')();
 
 var url = 'https://new.theastrologer.com/'
-var horoscope = config.sunsign;
+var horoscope = ["taurus","pisces","cancer","sagittarius","aquarius","leo","libra","aries","virgo","gemini","capricorn","scorpio"];
 
 var arr = [];
 
 app.get('/', (req,res)=>{
+  console.log(horoscope)
   var text = {
     "GET_ALL": "http://__url__/horoscope",
     "GET_BY_SUNSIGN": "http://__url__/horoscope/:sunsign",
