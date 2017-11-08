@@ -3,7 +3,8 @@ Scrapping sunsign from theastrolloger.com using cheerio.
 
 A scrapping script for get a daily horoscope using NodeJS, Express, and Cheerio.
 
-Demo : http://horoscope.primayudantra.me/
+Demo : https://api-horoscope.herokuapp.com/
+
 
 ```
 $ npm install
