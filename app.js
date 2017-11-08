@@ -7,6 +7,8 @@ var url = 'https://new.theastrologer.com/'
 var horoscope = ["taurus","pisces","cancer","sagittarius","aquarius","leo","libra","aries","virgo","gemini","capricorn","scorpio"];
 
 var arr = [];
+var port = 5000
+app.set('port',(process.env.PORT || port))
 
 app.get('/', (req,res)=>{
   console.log(horoscope)
@@ -49,9 +51,10 @@ app.get('/horoscope/:sunsign', (req,res) => {
     }
   })
 })
-app.listen(config.url.port)
+app.listen(app.get('port'), function(){
+  console.log("-------------------------------")
+  console.log("PRIMA YUDANTRA - ASTROLOGER API TODAY")
+  console.log("SERVER RUNNING ON PORT")
+  console.log("-------------------------------")
 
-console.log("-------------------------------")
-console.log("PRIMA YUDANTRA - ASTROLOGER API TODAY")
-console.log("SERVER RUNNING ON PORT : " + config.url.port)
-console.log("-------------------------------")
+})
