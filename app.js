@@ -65,7 +65,7 @@ app.get('/horoscope/:sunsign/beta', (req,res) => {
           json += $(p).remove("span").text() + ",";
         });
       });
-      json = "}";
+      json += "}";
 
       var payload = { sunsign:req.params.sunsign, content: content, other: json, date: new Date().toISOString().substring(0,10)}
       let data = { data: payload}
