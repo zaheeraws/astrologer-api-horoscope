@@ -60,7 +60,7 @@ app.get('/horoscope/:sunsign/beta', (req,res) => {
       let content = $('#today').find('p').html()
       var payload = { sunsign:req.params.sunsign, content: html, date: new Date().toISOString().substring(0,10)}
       let data = { data: payload}
-      res.json(data)
+      res.html(html)
     }
   })
 })
