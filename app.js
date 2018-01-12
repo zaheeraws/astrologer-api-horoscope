@@ -51,6 +51,20 @@ app.get('/horoscope/:sunsign', (req,res) => {
     }
   })
 })
+
+app.get('/horoscope/:sunsign/beta', (req,res) => {
+  var sunsign = req.params.sunsign;
+  request(url + sunsign, (err, resp, html)=> {
+    if(!err){
+      var $ = cheerio.load(html)
+      let content = $('#today').find('p').html()
+      var payload = { sunsign:req.params.sunsign, content: html, date: new Date().toISOString().substring(0,10)}
+      let data = { data: payload}
+      res.json(data)
+    }
+  })
+})
+
 app.listen(app.get('port'), function(){
   console.log("-------------------------------")
   console.log("PRIMA YUDANTRA - ASTROLOGER API TODAY")
