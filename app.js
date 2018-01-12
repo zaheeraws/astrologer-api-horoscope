@@ -57,10 +57,19 @@ app.get('/horoscope/:sunsign/beta', (req,res) => {
   request(url + sunsign, (err, resp, html)=> {
     if(!err){
       var $ = cheerio.load(html)
-      let content = $('#today').find('p').html()
-      var payload = { sunsign:req.params.sunsign, content: html, date: new Date().toISOString().substring(0,10)}
+      let content = $('#today').find('p').html();
+
+      let json = "{";
+      $("#today").find(".daily-meta").find(".col-md-6").each(function(i,v){
+         $(v).find("p").each(function(k,p){
+          json += $(p).remove("span").text() + ",";
+        });
+      });
+      json = "}";
+
+      var payload = { sunsign:req.params.sunsign, content: content, other: json, date: new Date().toISOString().substring(0,10)}
       let data = { data: payload}
-      res.send(html)
+      res.json(data)
     }
   })
 })
