@@ -76,7 +76,7 @@ app.get('/horoscope/:sunsign/:day', (req,res) => {
       });
       //json = json.replace(/,\s*$/, "");
       //json += "}";
-      let json  = JSON.stringify(obj);
+      let json  = obj ;//JSON.stringify(obj);
       //var payload = { sunsign:req.params.sunsign, horoscope: content, content: content, other: json, date: new Date().toISOString().substring(0,10)}
       //let data = { data: payload};
       let data = { day: day, horoscope: content, meta: json, sunsign:req.params.sunsign, date: new Date().toISOString().substring(0,10) }
