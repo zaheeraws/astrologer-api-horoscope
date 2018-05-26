@@ -66,7 +66,7 @@ app.get('/horoscope/:sunsign/:day', (req,res) => {
          $(v).find("p").each(function(k,p){
           if( !$(p).remove("span").text().match(exp) ){
             let vals = $(p).remove("span").text().split(":");
-            value = "'" + vals[0] + "': '" + vals[1] + "' ";
+            value = '"' + vals[0] + '": "' + vals[1] + '" ';
             json += value + ",";
           }
               
