@@ -52,8 +52,9 @@ app.get('/horoscope/:sunsign', (req,res) => {
   })
 })
 
-app.get('/horoscope/:sunsign/beta', (req,res) => {
+app.get('/horoscope/:sunsign/:day', (req,res) => {
   var sunsign = req.params.sunsign;
+  var day = req.params.day;
   request(url + sunsign, (err, resp, html)=> {
     if(!err){
       var $ = cheerio.load(html)
@@ -67,8 +68,9 @@ app.get('/horoscope/:sunsign/beta', (req,res) => {
       });
       json += "}";
 
-      var payload = { sunsign:req.params.sunsign, content: content, other: json, date: new Date().toISOString().substring(0,10)}
-      let data = { data: payload}
+      //var payload = { sunsign:req.params.sunsign, horoscope: content, content: content, other: json, date: new Date().toISOString().substring(0,10)}
+      //let data = { data: payload};
+      let data = { day: day, horoscope: content, meta: json, sunsign:req.params.sunsign, date: new Date().toISOString().substring(0,10) }
       res.json(data)
     }
   })
