@@ -58,7 +58,7 @@ app.get('/horoscope/:sunsign/:day', (req,res) => {
   request(url + sunsign, (err, resp, html)=> {
     if(!err){
       var $ = cheerio.load(html)
-      let content = $('#today').find('p').html();
+      let content = $('#' + day).find('p').html();
 
       var obj = new Object();
       //let json = "{";
