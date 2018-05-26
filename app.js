@@ -64,8 +64,12 @@ app.get('/horoscope/:sunsign/:day', (req,res) => {
       var exp = /Rating:/;
       $("#today").find(".daily-meta").find(".col-md-6").each(function(i,v){
          $(v).find("p").each(function(k,p){
-          if( !$(p).remove("span").text().match(exp) )
-              json += $(p).remove("span").text() + ",";
+          if( !$(p).remove("span").text().match(exp) ){
+            let vals = $(p).remove("span").text().split(":");
+            value = "'" + vals[0] + "': '" + vals[1] + "' ";
+            json += value + ",";
+          }
+              
         });
       });
       json = json.replace(/,\s*$/, "");
