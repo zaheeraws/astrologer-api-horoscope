@@ -60,21 +60,23 @@ app.get('/horoscope/:sunsign/:day', (req,res) => {
       var $ = cheerio.load(html)
       let content = $('#today').find('p').html();
 
-      let json = "{";
+      var obj = new Object();
+      //let json = "{";
       var exp = /Rating:/;
       $("#today").find(".daily-meta").find(".col-md-6").each(function(i,v){
          $(v).find("p").each(function(k,p){
           if( !$(p).remove("span").text().match(exp) ){
             let vals = $(p).remove("span").text().split(":");
-            value = '"' + vals[0] + '": "' + vals[1] + '" ';
-            json += value + ",";
+            //value = '"' + vals[0] + '": "' + vals[1] + '" ';
+            obj[vals[0]] = vals[1];
+            //json += value + ",";
           }
               
         });
       });
-      json = json.replace(/,\s*$/, "");
-      json += "}";
-
+      //json = json.replace(/,\s*$/, "");
+      //json += "}";
+      let json  = JSON.stringify(obj);
       //var payload = { sunsign:req.params.sunsign, horoscope: content, content: content, other: json, date: new Date().toISOString().substring(0,10)}
       //let data = { data: payload};
       let data = { day: day, horoscope: content, meta: json, sunsign:req.params.sunsign, date: new Date().toISOString().substring(0,10) }
