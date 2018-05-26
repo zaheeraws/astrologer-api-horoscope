@@ -61,11 +61,14 @@ app.get('/horoscope/:sunsign/:day', (req,res) => {
       let content = $('#today').find('p').html();
 
       let json = "{";
+      var exp = /Rating:/;
       $("#today").find(".daily-meta").find(".col-md-6").each(function(i,v){
          $(v).find("p").each(function(k,p){
-          json += $(p).remove("span").text() + ",";
+          if( !$(p).remove("span").text().match(exp) )
+              json += $(p).remove("span").text() + ",";
         });
       });
+      json = json.replace(/,\s*$/, "");
       json += "}";
 
       //var payload = { sunsign:req.params.sunsign, horoscope: content, content: content, other: json, date: new Date().toISOString().substring(0,10)}
